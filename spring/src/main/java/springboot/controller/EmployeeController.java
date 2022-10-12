@@ -35,4 +35,17 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long employeeId){
         return new ResponseEntity<Employee>(employeeService.getEmployeeById(employeeId), HttpStatus.OK);
     }
+
+    // Build Update Employee REST API
+    @PutMapping("{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @RequestBody Employee employee){
+        return new ResponseEntity<Employee>(employeeService.updateEmployee(employee, id),HttpStatus.OK);
+    }
+
+    // Build Delete Employee REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") long id){
+        employeeService.deleteEmployee(id);
+        return new ResponseEntity<String>("Employee deleted successfully!", HttpStatus.OK);
+    }
 }
